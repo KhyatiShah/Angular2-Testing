@@ -31,3 +31,7 @@ npm-debug.log
 
 .idea
 *.iml
+
+# Ignores compiled TypeScript files
+**/src/app/*.map
+**/src/app/*.js
