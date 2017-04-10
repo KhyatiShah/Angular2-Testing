@@ -86,9 +86,9 @@ module.exports = function (config) {
 
         exclude: [],
         preprocessors: {
-            'src/**/*.js': ['coverage']
+            'src/**/*.js': ['coverage'] //defines which files should be tested
         },
-        reporters: ['progress','dots'],//,'coverage'],
+        reporters: ['progress','dots'],//,'coverage'], // create a coverage report for every browser that the tests are run in.
 
         // optionally, configure the reporter
         coverageReporter: {

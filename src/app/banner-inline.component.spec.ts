@@ -3,8 +3,9 @@ import {By}              from '@angular/platform-browser';
 import {DebugElement}    from '@angular/core';
 
 import {BannerComponent} from './banner-inline.component';
-import {MockBannerService} from "./mock-banner.service";
+import {MockBannerService} from "./mock.banner.service";
 import {BannerService} from "./banner.service";
+import {FormsModule} from '@angular/forms';
 
 describe('BannerComponent Test', () => {
 
@@ -15,6 +16,7 @@ describe('BannerComponent Test', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
+            imports: [FormsModule],
             declarations: [BannerComponent], // declare the test component
             providers: [
                 {provide: BannerService, useClass: MockBannerService}]
@@ -40,10 +42,20 @@ describe('BannerComponent Test', () => {
     });
 
     it('should get heroes list', fakeAsync(() => {
+        fixture.detectChanges();
         comp.title = 'Test Title';
         comp.getHeroes();
         tick();
         expect(comp.heroes.length).toBe(1);
     }));
+
+    it('should add hero on click of Submit button', () => {
+        fixture.detectChanges();
+        let buttonElement = fixture.debugElement.query(By.css('input.button'));
+        el = buttonElement.nativeElement;
+        comp.name = "Test";
+        el.click();
+        expect(comp.heroes[0].name).toBe("Test");
+    });
 
 });
